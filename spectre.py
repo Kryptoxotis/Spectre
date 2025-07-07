@@ -19,26 +19,33 @@ class Spectre:
             }
         )
 
-
-        # Option A: positional arguments (name first, client second)
+        # Correct usage: name first, then llm (client)
         self.agent = AssistantAgent("Spectre", self.llm)
 
         self.table_name = "quotes"
         self.setup()
 
     def setup(self):
-        create_table(self.table_name)
+        try:
+            create_table(self.table_name)
+        except Exception as e:
+            print(f"[SPECTRE]: Failed to create table - {e}")
 
-    def ask(self, prompt: str):
+    def ask(self, prompt: str) -> str:
         similar = self.find_similar(prompt)
         if similar:
-            print(f"[SPECTRE]: Similar quote found:\n{similar['quote']}")
+            return f"[SPECTRE]: Similar quote found:\n{similar['quote']}"
         else:
-            print(f"[SPECTRE]: No similar quote found. Storing...")
             insert_quote(self.table_name, prompt)
+            return "[SPECTRE]: No similar quote found. Storing..."
 
     def find_similar(self, quote: str):
-        all_quotes = get_all_quotes(self.table_name)
+        try:
+            all_quotes = get_all_quotes(self.table_name)
+        except Exception as e:
+            print(f"[SPECTRE]: Failed to fetch quotes - {e}")
+            return None
+
         for q in all_quotes:
             if quote.lower().strip() in q["quote"].lower():
                 return q
@@ -50,4 +57,5 @@ class Spectre:
             prompt = input("> ")
             if prompt.strip().lower() == "exit":
                 break
-            self.ask(prompt)
+            response = self.ask(prompt)
+            print(response)
