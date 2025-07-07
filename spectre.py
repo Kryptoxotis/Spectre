@@ -1,15 +1,25 @@
 import os
-from langchain.llms import OpenAI
-from autogen import AssistantAgent
-from supabase import insert_quote, get_all_quotes, create_table
 from dotenv import load_dotenv
+from langchain_community.llms import OpenAI
+from autogen_ext.agents import AssistantAgent
+from autogen_ext.models.openai import OpenAIWrapper
+from autogen_ext.llm import OpenAIGPTConfig
+
+from supabase import insert_quote, get_all_quotes, create_table
 
 load_dotenv()
 
 class Spectre:
     def __init__(self):
-        self.llm = OpenAI(openai_api_key=os.getenv("OPENROUTER_API_KEY"))
-        self.agent = AssistantAgent("Spectre", llm_config={"config_list": [{"model": "gpt-4"}]})
+        # Use OpenRouter key for OpenAI-compatible access
+        config = OpenAIGPTConfig(
+            api_key=os.getenv("OPENROUTER_API_KEY"),
+            model="gpt-4",  # Or other model
+            base_url="https://openrouter.ai/api/v1",  # Adjust if different
+        )
+        self.llm = OpenAIWrapper(config=config)
+
+        self.agent = AssistantAgent(name="Spectre", llm=self.llm)
         self.table_name = "quotes"
         self.setup()
 
