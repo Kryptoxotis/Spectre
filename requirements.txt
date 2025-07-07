@@ -1,7 +1,5 @@
-# AutoGen patched to work with OpenAI v1.x
-git+https://github.com/khoj-ai/autogen.git@patch-1#egg=autogen
-
 openai>=1.24.0,<2.0.0
+git+https://github.com/khoj-ai/autogen.git@patch-1#egg=autogen
 langchain==0.1.17
 langchain-core==0.1.52
 langchain-community==0.0.38
