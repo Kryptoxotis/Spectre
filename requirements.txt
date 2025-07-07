@@ -1,6 +1,6 @@
 openai==1.30.5
 langchain==0.1.17
-langchain-core==0.1.51
+langchain-core==0.1.52
 langchain-community==0.0.38
 langchain-openai==0.1.6
 pyautogen==0.9.0
