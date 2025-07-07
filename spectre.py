@@ -4,7 +4,7 @@ from langchain_community.llms import OpenAI
 from autogen import AssistantAgent
 from autogen.oai.client import OpenAIWrapper
 
-from supabase import insert_quote, get_all_quotes, create_table
+from supabaseCRUD import insert_quote, get_all_quotes, create_table
 
 load_dotenv()
 
