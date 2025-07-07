@@ -1,0 +1,23 @@
+body {
+  font-family: Arial;
+  background: #101010;
+  color: #eee;
+  padding: 2em;
+}
+.chat-container {
+  max-width: 600px;
+  margin: auto;
+}
+input {
+  width: 70%;
+  padding: 0.5em;
+}
+button {
+  padding: 0.5em 1em;
+}
+.messages {
+  margin-top: 1em;
+}
+.user, .bot {
+  margin: 0.5em 0;
+}
