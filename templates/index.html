@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SPECTRE Chat</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="chat-container">
+    <h1>SPECTRE Chat</h1>
+    <form method="post" action="/chat">
+      <input name="message" type="text" placeholder="Ask Spectre..." required>
+      <button type="submit">Send</button>
+    </form>
+
+    {% if messages %}
+      <div class="messages">
+        {% for msg in messages %}
+          <div class="user">You: {{ msg.user }}</div>
+          <div class="bot">Spectre: {{ msg.bot }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
