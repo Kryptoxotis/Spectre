@@ -11,12 +11,14 @@ load_dotenv()
 class Spectre:
     def __init__(self):
         # Use OpenRouter key for OpenAI-compatible access
-        config = OpenAIGPTConfig(
-            api_key=os.getenv("OPENROUTER_API_KEY"),
-            model="gpt-4",  # Or other model
-            base_url="https://openrouter.ai/api/v1",  # Adjust if different
+        self.llm = OpenAIWrapper(
+            config={
+                "api_key": os.getenv("OPENROUTER_API_KEY"),
+                "base_url": "https://openrouter.ai/api/v1",
+                "model": "gpt-4",
+            }
         )
-        self.llm = OpenAIWrapper(config=config)
+
 
         self.agent = AssistantAgent(name="Spectre", llm=self.llm)
         self.table_name = "quotes"
