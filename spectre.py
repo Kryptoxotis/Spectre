@@ -20,7 +20,9 @@ class Spectre:
         )
 
 
-        self.agent = AssistantAgent(name="Spectre", llm=self.llm)
+        # Option A: positional arguments (name first, client second)
+        self.agent = AssistantAgent("Spectre", self.llm)
+
         self.table_name = "quotes"
         self.setup()
 
