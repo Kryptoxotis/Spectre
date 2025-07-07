@@ -1,3 +1,5 @@
+--no-cache-dir
+
 openai==1.30.5
 langchain==0.1.17
 langchain-core==0.1.52
