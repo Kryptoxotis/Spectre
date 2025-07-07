@@ -1,7 +1,8 @@
-openai>=1.24.0,<2.0.0
-git+https://github.com/khoj-ai/autogen.git@patch-1#egg=autogen
-langchain==0.1.17
-langchain-core==0.1.52
-langchain-community==0.0.38
-supabase==2.16.0
-python-dotenv==1.1.1
+openai
+autogen
+langchain
+langchain-core
+langchain-community
+supabase
+python-dotenv
+langchain-openai
