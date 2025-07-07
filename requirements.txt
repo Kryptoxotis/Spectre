@@ -1,4 +1,4 @@
-autogen-ext[openai]==latest       # ensures compatibility with OpenAI v1.x
+autogen-ext[openai]       # ensures compatibility with OpenAI v1.x
 openai>=1.1.1,<2.0.0              # latest OpenAI SDK
 langchain==0.1.17
 langchain-core==0.1.52
