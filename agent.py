@@ -19,19 +19,19 @@ llm = OpenAIWrapper(
 # Define tools
 create_db_tool = ag_tools.Tool(
     name="create_database",
-    function=create_table,
+    func=create_table,
     description="Create a new database table with the given name and schema (a dict of column_name->type)."
 )
 
 read_tool = ag_tools.Tool(
     name="read_records",
-    function=get_all_quotes,
+    func=get_all_quotes,
     description="Read all records from the specified Supabase table."
 )
 
 insert_tool = ag_tools.Tool(
     name="insert_quote",
-    function=insert_quote,
+    func=insert_quote,
     description="Insert a quote into a Supabase table. Args: table name, quote, and optional context."
 )
 
