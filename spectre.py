@@ -14,7 +14,7 @@ class Spectre:
         self.llm = OpenAIWrapper(
             config={
                 "api_key": os.getenv("OPENROUTER_API_KEY"),
-                "base_url": "https://openrouter.ai/api/v1",
+                "api_base": "https://openrouter.ai/api/v1",
                 "model": "gpt-4",
             }
         )
