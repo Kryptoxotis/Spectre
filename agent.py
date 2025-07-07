@@ -19,13 +19,13 @@ llm = OpenAIWrapper(
 # Define tools
 create_db_tool = ag_tools.Tool(
     name="create_database",
-    func=create_table,
+    function=create_table,
     description="Create a new database table with given name and schema. Schema is a dict of column_name->type.",
 )
 
 read_tool = ag_tools.Tool(
     name="read_records",
-    func=get_all_quotes,
+    function=get_all_quotes,
     description="Read all records from the specified database table.",
 )
 
@@ -33,7 +33,7 @@ read_tool = ag_tools.Tool(
 # Later, you can remove this and have it learn when/how to call it dynamically
 insert_tool = ag_tools.Tool(
     name="insert_quote",
-    func=insert_quote,
+    function=insert_quote,
     description="Insert a quote into the specified table. Args: table name, quote, context (optional).",
 )
 
