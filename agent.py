@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from autogen import AssistantAgent, Tool
+from autogen.agentchat import AssistantAgent, Tool  # ✅ Updated this line
 from autogen.oai.client import OpenAIWrapper
 from supabaseCRUD import create_table, insert_quote, get_all_quotes
 
