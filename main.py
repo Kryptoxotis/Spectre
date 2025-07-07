@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -18,16 +18,8 @@ async def get_chat(request: Request):
 async def post_chat(request: Request):
     form = await request.form()
     user_input = form.get("message")
-
-    response = spectre.ask(user_input)  # Update this to return string if needed
-    if response is None:
-        response = "Stored. No similar quote found."
-
+    response = await spectre.ask(user_input)
     return templates.TemplateResponse(
         "index.html",
-        {
-            "request": request,
-            "messages": [{"user": user_input, "bot": response}]
-        }
+        {"request": request, "messages": [{"user": user_input, "bot": response}]}
     )
-
