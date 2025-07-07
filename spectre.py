@@ -1,9 +1,8 @@
 import os
 from dotenv import load_dotenv
 from langchain_community.llms import OpenAI
-from autogen_ext.agents import AssistantAgent
-from autogen_ext.models.openai import OpenAIWrapper
-from autogen_ext.llm import OpenAIGPTConfig
+from autogen import AssistantAgent
+from autogen.oai.client import OpenAIWrapper
 
 from supabase import insert_quote, get_all_quotes, create_table
 
