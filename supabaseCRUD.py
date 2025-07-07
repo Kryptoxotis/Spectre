@@ -3,7 +3,6 @@ from supabase import create_client, Client
 
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
-
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY)
 
 def create_table(table_name: str):
@@ -17,15 +16,25 @@ def create_table(table_name: str):
     """
     try:
         supabase.postgrest.rpc("execute_sql", {"query": query}).execute()
-        print(f"[SPECTRE]: Table '{table_name}' created.")
+        return f"Table '{table_name}' created."
     except Exception as e:
-        print(f"[SPECTRE]: Failed to create table - {e}")
+        return f"Error creating table '{table_name}': {e}"
 
 def insert_quote(table: str, quote: str, context: str = ""):
-    return supabase.table(table).insert({"quote": quote, "context": context}).execute()
+    try:
+        result = supabase.table(table).insert({"quote": quote, "context": context}).execute()
+        return result.data
+    except Exception as e:
+        return f"Insert failed: {e}"
 
 def get_all_quotes(table: str):
-    return supabase.table(table).select("*").execute().data
+    try:
+        return supabase.table(table).select("*").execute().data
+    except Exception as e:
+        return f"Read failed: {e}"
 
 def delete_quote(table: str, quote_id: str):
-    return supabase.table(table).delete().eq("id", quote_id).execute()
+    try:
+        return supabase.table(table).delete().eq("id", quote_id).execute()
+    except Exception as e:
+        return f"Delete failed: {e}"
